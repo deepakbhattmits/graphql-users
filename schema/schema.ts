@@ -3,6 +3,15 @@ const graphql = require('graphql');
 const axios= require('axios')
 const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLSchema } = graphql;
 
+
+const CompanyType = new GraphQLObjectType({
+    name: "Company",
+    fields: {
+        id: { type: GraphQLString },
+        name: { type: GraphQLString },
+        description:{type:GraphQLString}
+    }
+})
 // const users = [{ id: '23', firstName: 'Deepak Bhatt', age: 30 }, {id:'24', firstName:'Puja Upadhyay', age:25}]
 // we are going to use this GraphQLObjectType to instruct the graphQL presence of user in our application (data)
 // remember the entire purpose of schema file is to instruct graphQL about the data type in our application
@@ -12,6 +21,12 @@ const UserType = new GraphQLObjectType({
         id: { type: GraphQLString },
         firstName: { type: GraphQLString },
         age: { type: GraphQLInt },
+        company: {
+            type: CompanyType, resolve(parentValue: any, args: any)
+            {
+                return axios.get(`http://localhost:3000/companies/${ parentValue?.companyId }`).then((resp: { data: any; }) => resp?.data);
+            }
+        }
     }
 });
 const RootQuery = new GraphQLObjectType({
