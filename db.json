@@ -1,3 +1,11 @@
 {
-    "users":[{"id":"12","firstName":"Deepak", "age":"30"},{"id":"13","firstName":"Deepak 1", "age":"31"},{"id":"14","firstName":"Deepak 2", "age":"32"}]
+  "users": [
+    { "id": "12", "firstName": "Deepak", "companyId": "1", "age": "30" },
+    { "id": "13", "firstName": "Deepak 1", "companyId": "2", "age": "31" },
+    { "id": "14", "firstName": "Deepak 2", "companyId": "2", "age": "32" }
+  ],
+  "companies": [
+    { "id": "1", "name": "Apple", "description": "iPhone" },
+    { "id": "2", "name": "Google", "description": "search" }
+  ]
 }
