@@ -1,0 +1,14 @@
+{
+  apple: company(id: "1") {
+    ...CompanyDetails
+  }
+  google: company(id: "2") {
+    ...CompanyDetails
+  }
+}
+// fragment to reduce redundant code in our query
+fragment CompanyDetails on Company {
+  id
+  name
+  description
+}
